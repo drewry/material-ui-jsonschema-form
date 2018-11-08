@@ -14,8 +14,8 @@ import {
   FieldSetContent,
 } from './FieldSet';
 import ReorderableFormField, { RawReorderableFormField } from './ReorderableFormField';
-import FieldSetArray, { RawFieldSetArray } from './FieldSetArray';
-import FieldSetObject, { RawFieldSetObject } from './FieldSetObject';
+import { RawFieldSetArray } from './FieldSetArray';
+import { RawFieldSetObject } from './FieldSetObject';
 import ReorderControls, { RawReorderControls } from './ReorderControls';
 import FormField from '../FormField';
 
