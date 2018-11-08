@@ -1,8 +1,5 @@
-// import Input, { InputLabel } from 'material-ui/Input'; // eslint-disable-line import/no-named-default
-import { FormLabel } from 'material-ui/Form';
-
-const { InputLabel } = require('material-ui/Input');
-
+// import Input, { InputLabel } from '@material-ui/core/Input'; // eslint-disable-line import/no-named-default
+import { InputLabel, FormLabel } from '@material-ui/core';
 
 export default ({ schema, uiSchema = {} }) => {
   const widget = uiSchema['ui:widget'];

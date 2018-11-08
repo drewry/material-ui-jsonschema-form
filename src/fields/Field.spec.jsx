@@ -7,10 +7,10 @@ import chaiEnzyme from 'chai-enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-import Input from 'material-ui/Input';
-import { FormControl, FormHelperText, FormLabel } from 'material-ui/Form';
+import Input from '@material-ui/core/Input';
+import { FormControl, FormHelperText, FormLabel } from '@material-ui/core';
 import { RadioGroup } from './components';
-import { ConfiguredField } from './Field';
+import { RawConfiguredField } from './ConfiguredField';
 
 const classes = {
   description: 'description',
@@ -31,7 +31,7 @@ describe('Field', () => {
     const data = 'Hello';
     const type = 'string';
     const wrapper = shallow(
-      <ConfiguredField type={type} data={data} classes={classes} componentProps={componentProps} />,
+      <RawConfiguredField type={type} data={data} classes={classes} componentProps={componentProps} />,
     );
     // test FormControl properties
     const FC = wrapper.find(FormControl);
@@ -50,13 +50,13 @@ describe('Field', () => {
     expect(Component).to.not.have.prop('className'); // control
   });
   it('applies given className', () => {
-    const wrapper = shallow(<ConfiguredField classes={classes} className={'myComp'} />);
+    const wrapper = shallow(<RawConfiguredField classes={classes} className={'myComp'} />);
     const Component = wrapper.find(Input);
     expect(Component).to.be.present();
     expect(Component).to.have.prop('className', classes.myComp);
   });
   it('renders provided Component', () => {
-    const wrapper = shallow(<ConfiguredField Component={RadioGroup} />);
+    const wrapper = shallow(<RawConfiguredField Component={RadioGroup} />);
     expect(wrapper.find(Input)).to.not.be.present();
     expect(wrapper.find(RadioGroup)).to.be.present();
   });
@@ -68,7 +68,7 @@ describe('Field', () => {
     const DummyLabel = ({ children }) => <div>{children}</div>;
 
     const wrapper = shallow(
-      <ConfiguredField title={title} labelComponentProps={labelComponentProps} LabelComponent={DummyLabel} />,
+      <RawConfiguredField title={title} labelComponentProps={labelComponentProps} LabelComponent={DummyLabel} />,
     );
 
     const labelComp = wrapper.find(DummyLabel);
@@ -79,7 +79,7 @@ describe('Field', () => {
   });
   it('renders provided descriptionText', () => {
     const descriptionText = 'This is a field';
-    const wrapper = shallow(<ConfiguredField classes={classes} descriptionText={descriptionText} />);
+    const wrapper = shallow(<RawConfiguredField classes={classes} descriptionText={descriptionText} />);
 
     const descriptionComp = wrapper.find('p');
     expect(descriptionComp).to.have.length(1);
@@ -89,7 +89,7 @@ describe('Field', () => {
   it('renders provided helpText', () => {
     const helpText = 'Help! I need somebody!';
     const id = 'unq-id';
-    const wrapper = shallow(<ConfiguredField id={id} helpText={helpText} />);
+    const wrapper = shallow(<RawConfiguredField id={id} helpText={helpText} />);
 
     const helpComp = wrapper.find(FormHelperText);
     expect(helpComp).to.be.present();
@@ -103,14 +103,14 @@ describe('Field', () => {
     const componentProps = {
       onChange,
     };
-    const wrapper = shallow(<ConfiguredField componentProps={componentProps} data={data} />);
+    const wrapper = shallow(<RawConfiguredField componentProps={componentProps} data={data} />);
 
     const inputComp = wrapper.find(Input);
     inputComp.simulate('change', 'value');
     expect(onChange).to.be.calledWith('value');
   });
   it('has withLabel className ', () => {
-    const wrapper = shallow(<ConfiguredField LabelComponent={FormLabel} classes={classes} />);
+    const wrapper = shallow(<RawConfiguredField LabelComponent={FormLabel} classes={classes} />);
 
     expect(wrapper).prop('className').match(/withLabelClass/);
   });

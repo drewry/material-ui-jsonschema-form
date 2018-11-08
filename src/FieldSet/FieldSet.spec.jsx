@@ -8,15 +8,15 @@ import chaiEnzyme from 'chai-enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 import {
   RawFieldSet,
-  RawFieldSetObject,
-  FieldSetArray, RawFieldSetArray,
   FieldSetContent,
-  ReorderableFormField, RawReorderableFormField,
-  ReorderControls, RawReorderControls,
 } from './FieldSet';
+import ReorderableFormField, { RawReorderableFormField } from './ReorderableFormField';
+import FieldSetArray, { RawFieldSetArray } from './FieldSetArray';
+import FieldSetObject, { RawFieldSetObject } from './FieldSetObject';
+import ReorderControls, { RawReorderControls } from './ReorderControls';
 import FormField from '../FormField';
 
 const classes = {
@@ -266,7 +266,7 @@ describe('FieldSet', () => {
         expect(ffComp.at(i)).to.not.have.prop('onMoveItemDown');
         expect(ffComp.at(i)).to.not.have.prop('onDeleteItem');
       });
-      const fsArrayComp = wrapper.find(FieldSetArray);
+      const fsArrayComp = wrapper.find(RawFieldSetArray);
       expect(fsArrayComp).to.be.present();
       expect(fsArrayComp).to.have.prop('path', path);
       expect(fsArrayComp).to.have.prop('data').deep.equal(['Harry', 'Susan']);
