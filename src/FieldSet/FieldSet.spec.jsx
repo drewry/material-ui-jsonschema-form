@@ -140,10 +140,28 @@ describe('FieldSet', () => {
       const ffComp = wrapper.find(FormField);
       expect(ffComp).to.have.length(2);
     });
-    it('respects the order', () => {
+    it('respects the propertyOrder', () => {
       const schema = {
         type: 'object',
         properties: {
+          details: {
+            'type': 'object',
+            'title': 'Equipment',
+            'properties': {
+              email: {
+                'type': 'string',
+                'title': 'Email',
+              },
+              position: {
+                'type': 'string',
+                'title': 'Position',
+              },
+            },
+            'propertyOrder': [
+              'position',
+              'email',
+            ],
+          },
           name: {
             'type': 'string',
             'title': 'Name',
@@ -161,6 +179,7 @@ describe('FieldSet', () => {
           'uuid',
           'position',
           'name',
+          'details',
         ],
       };
       const data = {
@@ -176,8 +195,10 @@ describe('FieldSet', () => {
       expect(wrapper).to.have.length(1);
       expect(wrapper).to.have.prop('className').not.match(/rowClassName/);
       const ffComp = wrapper.find(FormField);
-      expect(ffComp).to.have.length(3);
+      expect(ffComp).to.have.length(4);
       expect(ffComp.first()).to.have.prop('path', 'uuid');
+      const detailsComp = ffComp.last();
+      expect(detailsComp).to.have.prop('path', 'details');
     });
   });
   describe('FieldSetArray', () => {
