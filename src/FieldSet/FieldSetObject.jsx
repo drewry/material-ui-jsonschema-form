@@ -7,9 +7,19 @@ import fieldSetStyles from './field-set-styles';
 
 export const RawFieldSetObject = ({ className, classes, schema = {}, uiSchema = {}, data = {}, path, ...rest }) => {
   const orientation = (uiSchema['ui:orientation'] === 'row' ? classes.row : null);
+  let orderedProperties = Object.assign({}, schema.properties);
+
+  // if we have propertyOrder arrange then in that order
+  if (schema.propertyOrder) {
+    orderedProperties = {};
+    schema.propertyOrder.forEach((key) => {
+      orderedProperties[key] = schema.properties[key];
+    });
+  }
+
   return (
     <div className={classNames(classes.root, orientation)}>
-      {keys(schema.properties).map((p) => {
+      {keys(orderedProperties).map((p) => {
         const newPath = path ? `${path}.${p}` : p;
         return (
           <FormField

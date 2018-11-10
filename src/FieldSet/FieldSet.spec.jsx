@@ -140,6 +140,45 @@ describe('FieldSet', () => {
       const ffComp = wrapper.find(FormField);
       expect(ffComp).to.have.length(2);
     });
+    it('respects the order', () => {
+      const schema = {
+        type: 'object',
+        properties: {
+          name: {
+            'type': 'string',
+            'title': 'Name',
+          },
+          position: {
+            'type': 'string',
+            'title': 'Position',
+          },
+          uuid: {
+            'type': 'string',
+            'title': 'UUID',
+          },
+        },
+        propertyOrder: [
+          'uuid',
+          'position',
+          'name',
+        ],
+      };
+      const data = {
+        name: 'Bob',
+        position: 'Chief Bob Officer',
+        uuid: '478e26b0-e4fc-11e8-9b5b-a76bbce4b927',
+      };
+
+      // act
+      const wrapper = shallow(<RawFieldSetObject classes={classes} schema={schema} data={data} />);
+
+      // check
+      expect(wrapper).to.have.length(1);
+      expect(wrapper).to.have.prop('className').not.match(/rowClassName/);
+      const ffComp = wrapper.find(FormField);
+      expect(ffComp).to.have.length(3);
+      expect(ffComp.first()).to.have.prop('path', 'uuid');
+    });
   });
   describe('FieldSetArray', () => {
     it('handles simple, orderable list of strings', () => {
