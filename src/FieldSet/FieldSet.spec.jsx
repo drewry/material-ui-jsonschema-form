@@ -99,6 +99,47 @@ describe('FieldSet', () => {
       expect(ffComp).to.have.prop('path', 'name');
       expect(ffComp).to.have.prop('data', data.name);
     });
+    it('mounts with nested object', () => {
+      const schema = {
+        type: 'object',
+        properties: {
+          name: {
+            'type': 'string',
+            'title': 'Name',
+          },
+          details: {
+            'type': 'object',
+            'title': 'Equipment',
+            'properties': {
+              email: {
+                'type': 'string',
+                'title': 'Email',
+              },
+              position: {
+                'type': 'string',
+                'title': 'Position',
+              },
+            },
+          },
+        },
+      };
+      const data = {
+        name: 'Bob',
+        details: {
+          email: 'bob@bob.com',
+          position: 'Chief Bob Office',
+        },
+      };
+
+      // act
+      const wrapper = shallow(<RawFieldSetObject classes={classes} schema={schema} data={data} />);
+
+      // check
+      expect(wrapper).to.have.length(1);
+      expect(wrapper).to.have.prop('className').not.match(/rowClassName/);
+      const ffComp = wrapper.find(FormField);
+      expect(ffComp).to.have.length(2);
+    });
   });
   describe('FieldSetArray', () => {
     it('handles simple, orderable list of strings', () => {
