@@ -18,7 +18,7 @@ export const RawFieldSetObject = ({ className, classes, schema = {}, uiSchema = 
   }
 
   return (
-    <div className={classNames(classes.root, orientation)}>
+    <div className={`${classNames(classes.root, orientation)} FieldSetObject`}>
       {keys(orderedProperties).map((p) => {
         const newPath = path ? `${path}.${p}` : p;
         return (

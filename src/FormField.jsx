@@ -16,7 +16,7 @@ export class RawFormField extends React.Component {
     }
     return (
       <Field
-        className={classes.field}
+        className={`${classes.field} FormField`}
         path={path}
         schema={schema}
         data={data}

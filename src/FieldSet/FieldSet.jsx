@@ -29,7 +29,7 @@ export class RawFieldSet extends React.Component {
   render() {
     const { className, path, classes, schema = {} } = this.props;
     return (
-      <fieldset className={classNames(className, classes.root, { [classes.listItem]: endsWith(path, ']') })}>
+      <fieldset className={`${classNames(className, classes.root, { [classes.listItem]: endsWith(path, ']') })} FieldSet`}>
         {schema.title &&
           <InputLabel>{schema.title}</InputLabel>
         }

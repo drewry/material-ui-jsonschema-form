@@ -16,7 +16,7 @@ export const RawFieldSetArray = (props) => {
     schema = {}, uiSchema = {}, data, path, onMoveItemUp, onMoveItemDown, onDeleteItem, ...rest
   } = props;
   return (
-    <div className={classes.root}>
+    <div className={`${classes.root} FieldSetArray`}>
       {!isArray(schema.items) && !schema.uniqueItems && (
         <div>
           {(data || []).map((d, idx) => (

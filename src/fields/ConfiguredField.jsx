@@ -14,7 +14,7 @@ export class RawConfiguredField extends React.Component {
       title, className, componentProps = {}, id,
     } = this.props;
     return (
-      <FormControl className={classNames(classes.root, { [classes.withLabel]: LabelComponent })}>
+      <FormControl className={`${classNames(classes.root, { [classes.withLabel]: LabelComponent })} ConfigurableField`}>
         {LabelComponent && title &&
           <LabelComponent
             {...labelComponentProps}

@@ -15,7 +15,7 @@ export default (props) => {
   return (
     <ConfiguredField
       id={id}
-      className={className}
+      className={`${className} Field`}
       data={data}
       type={type}
       Component={Component}

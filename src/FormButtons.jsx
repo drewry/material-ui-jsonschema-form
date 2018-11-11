@@ -7,7 +7,7 @@ export class RawFormButtons extends React.Component {
   render() {
     const { classes, onCancel, onSubmit } = this.props;
     return (onCancel || onSubmit) && (
-      <div className={classes.formButtons}>
+      <div className={`${classes.formButtons} FormButtons`}>
         {onCancel &&
           <Button
             className={classNames(classes.cancel, classes.button)}

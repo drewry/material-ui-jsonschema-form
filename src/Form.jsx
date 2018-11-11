@@ -63,7 +63,7 @@ class Form extends React.Component {
     const { classes, formData, onSubmit, onChange, onCancel, ...rest } = this.props;
     const { validation, id } = this.state;
     return (
-      <Paper className={classes.root}>
+      <Paper className={`${classes.root} Form`}>
         <ValidationMessages validation={validation} />
         <FormField
           path={''}

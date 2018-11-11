@@ -9,7 +9,7 @@ export const RawReorderableFormField = ({
   first, last, className, classes, path, onMoveItemUp, onMoveItemDown, onDeleteItem, ...rest
 }) =>
   (
-    <div className={classNames(className, classes.root)}>
+    <div className={`${classNames(className, classes.root)} ReorderableFormField`}>
       <FormField
         path={path}
         {...rest}
