@@ -2,6 +2,7 @@ import update from 'immutability-helper';
 import forOwn from 'lodash/forOwn';
 import mapValues from 'lodash/mapValues';
 import rules from './rules';
+import getEmptyObject from './get-empty-object';
 
 const validationResult = (schema, value) => {
   const rv = [];
@@ -29,5 +30,6 @@ const getFieldSpec = (schema, value) => {
 
 export default (schema, data) => {
   const spec = getFieldSpec(schema, data);
-  return update(data, spec);
+  const object = getEmptyObject(schema);
+  return update(object, spec);
 };

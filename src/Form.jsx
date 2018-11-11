@@ -9,10 +9,11 @@ import updateFormData, { addListItem, removeListItem, moveListItem } from './hel
 import getValidationResult from './helpers/validation';
 import ValidationMessages from './ValidationMessages';
 import FormButtons from './FormButtons';
+import { getEmptyData } from './helpers/validation/get-empty-object';
 
 class Form extends React.Component {
   state = {
-    data: this.props.formData,
+    data: getEmptyData(this.props.formData, this.props.schema),
     validation: getValidationResult(this.props.schema, this.props.formData),
     id: generate(),
   }
