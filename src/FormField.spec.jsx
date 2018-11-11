@@ -41,7 +41,7 @@ describe('FormField', () => {
     expect(wrapper).to.be.present();
     const ffComp = wrapper.find(Field);
     expect(ffComp).to.have.length(1);
-    expect(ffComp).to.have.prop('className', classes.field);
+    expect(ffComp).to.have.prop('className', `${classes.field} FormField`);
     expect(ffComp).to.have.prop('path', path);
     expect(ffComp).to.have.prop('schema', schema);
     expect(ffComp).to.have.prop('data', data);
