@@ -11,7 +11,7 @@ export class RawFormButtons extends React.Component {
         {onCancel &&
           <Button
             className={classNames(classes.cancel, classes.button)}
-            variant={'flat'}
+            variant={'text'}
             onClick={onCancel}
           >
             Cancel
@@ -20,7 +20,7 @@ export class RawFormButtons extends React.Component {
         {onSubmit &&
           <Button
             className={classNames(classes.submit, classes.button)}
-            variant={'raised'}
+            variant={'contained'}
             color={'primary'}
             onClick={onSubmit}
           >

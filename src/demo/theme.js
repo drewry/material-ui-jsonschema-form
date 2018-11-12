@@ -4,6 +4,9 @@ import red from '@material-ui/core/colors/red';
 import blue from '@material-ui/core/colors/lightBlue';
 
 const theme = {
+  typography: {
+    useNextVariants: true,
+  },
   palette: {
     primary: {
       main: blue[600],
